@@ -7,6 +7,8 @@ class Wxmaxima < Formula
 
   depends_on 'wxmac'
 
+  patch :DATA
+
   def install
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
@@ -33,3 +35,14 @@ class Wxmaxima < Formula
     EOS
   end
 end
+__END__
+diff -r ./src/MathCtrl.cpp /Users/steven/Downloads/wxMaxima-13.04.2/src/MathCtrl.cpp
+127c127,132
+<     m_memory = new wxBitmap(sz.x, sz.y);
+---
+>   {
+>       
+> //    m_memory = new wxBitmap(sz.x, sz.y);
+>       m_memory = new wxBitmap();
+>       m_memory->CreateScaled (sz.x, sz.y, -1, dc.GetContentScaleFactor ());
+>   }

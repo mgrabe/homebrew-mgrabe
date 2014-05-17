@@ -36,13 +36,20 @@ class WxmaximaRetina < Formula
   end
 end
 __END__
-diff -r ./src/MathCtrl.cpp /Users/steven/Downloads/wxMaxima-13.04.2/src/MathCtrl.cpp
-127c127,132
-<     m_memory = new wxBitmap(sz.x, sz.y);
----
->   {
->       
-> //    m_memory = new wxBitmap(sz.x, sz.y);
->       m_memory = new wxBitmap();
->       m_memory->CreateScaled (sz.x, sz.y, -1, dc.GetContentScaleFactor ());
->   }
+diff --git a/src/MathCtrl.cpp b/src/MathCtrl.cpp
+index 357e606..94b5332 100644
+--- a/src/MathCtrl.cpp
++++ b/src/MathCtrl.cpp
+@@ -124,7 +124,11 @@ void MathCtrl::OnPaint(wxPaintEvent& event) {
+ 
+   // Thest if m_memory is NULL (resize event)
+   if (m_memory == NULL)
+-    m_memory = new wxBitmap(sz.x, sz.y);
++  {
++    // m_memory = new wxBitmap(sz.x, sz.y);
++     m_memory = new wxBitmap();
++     m_memory->CreateScaled (sz.x, sz.y, -1, dc.GetContentScaleFactor ());
++  }
+ 
+   // Prepare memory DC
+   wxString bgColStr= wxT("white");

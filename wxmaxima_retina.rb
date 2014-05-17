@@ -1,6 +1,6 @@
 require 'formula'
 
-class Wxmaxima < Formula
+class WxmaximaRetina < Formula
   homepage 'http://andrejv.github.io/wxmaxima'
   url 'https://downloads.sourceforge.net/project/wxmaxima/wxMaxima/13.04.2/wxMaxima-13.04.2.tar.gz'
   sha1 '9508d3badb6c339f34e73e01c5065f679329a17c'
